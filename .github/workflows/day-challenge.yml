@@ -19,7 +19,9 @@ jobs:
           pip3 install yamllint
 
       - name: run yaml lint
-        run: find . -name "*.yml" -print0 | xargs -0 yamllint
+        run: |
+          find . -name "*.yml" -print0 | xargs -0 yamllint
 
       - name: ansible lint 
-        run: find . -name "*.yml" -print0 | xargs -0 ansible-lint
+        run: |
+          find . -name "*.yml" -print0 | xargs -0 ansible-lint
