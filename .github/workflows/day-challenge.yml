@@ -7,6 +7,14 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: run playbook
-        shell: bash
-        run: ansible-playbook ansible.yml      
+
+      - name: install python
+        run: |
+        - sudo apt-get install -y python3 python-pip
+        - pip3 install ansible-lint yamllint
+
+      - name: run yaml lint
+        run: find . -name "*.yml" -print0 | xargs -0 yamllint
+        
+      - name: ansible lint 
+        run: find . -name "*.yml" -print0 | xargs -0 ansible-lint
