@@ -1,0 +1,20 @@
+---
+- name: Playbook to set up a webserver
+  hosts: localhost
+  become: true 
+  become_user: root
+
+  tasks:
+    - name: Install python (pip3 installed by default in versio)
+      shell: " {{ item }}"
+      with_items:
+      - sudo apt-get update
+      - sudo apt-get install python3.6
+
+    - name: Install python3-pip
+      shell: sudo python -m ensurepip --upgrade
+
+    - name: install ansible-lint
+      shell: sudo pip install ansible-lint
+
+      
